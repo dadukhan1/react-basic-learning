@@ -1,16 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useEffect} from 'react'
 
-function App() {
+const apiUrl = 'http://omdbapi.com?apikey=a07d18f5';
+
+const App = () => {
+
+  const searchMovies = async (title) => {
+    const response = await fetch(`${apiUrl}&s=${title}`)
+    const data = await response.json();
+
+    console.log(data.searchMovies);
+  }
+
+  useEffect(()=>{
+    searchMovies("IronMan")
+  },[])
 
   return (
-    <div>
-      <h1>Hello, React!</h1>
-      <button style={{backgroundColor:"green", color:""}}>Hehe</button>
-    </div>
+    <div>App</div>
   )
 }
 
-export default App
+export default App 
